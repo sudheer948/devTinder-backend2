@@ -79,7 +79,7 @@ const userSchema = new mongoose.Schema( // basically it defines the user
 userSchema.methods.getJWT = async function () {
   const user = this; // it will point to the instance of the User model of that particular user
 
-  const token = await jwt.sign({ _id: user._id }, "DEV@Tinder$790", {
+  const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
     // {hide data}, private key that only we know
     expiresIn: "7d", // after token expired, it will say jwt expired
   });

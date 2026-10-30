@@ -8,6 +8,7 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
+require("dotenv").config();  // import dotenv and configure dotenv
 
 app.use(cors({ origin: "http://localhost:5173", credentials: true })); // whitelisting the domain name
 app.use(express.json()); // this is a middleware
@@ -25,7 +26,7 @@ app.use("/", userRouter);
 connectDB()
   .then(() => {
     console.log("database connected successfully");
-    app.listen(7777, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Server is successfully listening on port 7777...");
     });
   })
